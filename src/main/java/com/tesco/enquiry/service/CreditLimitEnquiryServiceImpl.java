@@ -3,10 +3,23 @@
  */
 package com.tesco.enquiry.service;
 
+import org.springframework.stereotype.Component;
+
+import com.tesco.enquiry.model.EnquiryRequest;
+import com.tesco.enquiry.model.EnquiryResponse;
+
 /**
  * @author Prajwal by 20-Jul-2023
  *
  */
-public class CreditLimitEnquiryServiceImpl {
+
+@Component
+public class CreditLimitEnquiryServiceImpl implements ICreditLimitEnquiryService {
+
+	@Override
+	public EnquiryResponse enquiry(EnquiryRequest enquiryRequest) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

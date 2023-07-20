@@ -3,10 +3,14 @@
  */
 package com.tesco.enquiry.service;
 
+import com.tesco.enquiry.model.EnquiryRequest;
+import com.tesco.enquiry.model.EnquiryResponse;
+
 /**
  * @author Prajwal by 20-Jul-2023
  *
  */
 public interface ICreditLimitEnquiryService {
-
+	
+	public EnquiryResponse enquiry(EnquiryRequest enquiryRequest);
 }
