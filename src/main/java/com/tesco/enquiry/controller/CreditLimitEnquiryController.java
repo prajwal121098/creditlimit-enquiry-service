@@ -54,6 +54,8 @@ public class CreditLimitEnquiryController {
 		
 		// 4. Call the service layer and get the response
 		EnquiryResponse enquiryResponse =  creditLimitEnquiryService.enquiry(enquiryRequest);
+
+		// 5. Send reponse to Client in JSON
 		
 		return null;
 	}
