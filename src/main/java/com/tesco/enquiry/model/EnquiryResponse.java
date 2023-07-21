@@ -3,10 +3,12 @@
  */
 package com.tesco.enquiry.model;
 
+
 /**
  * @author Prajwal by 20-Jul-2023
  *
  */
+
 public class EnquiryResponse {
 
 	private String cardNum;
@@ -74,5 +76,5 @@ public class EnquiryResponse {
 	public void setIncreasePercentage(float increasePercentage) {
 		this.increasePercentage = increasePercentage;
 	}
-	
+
 }

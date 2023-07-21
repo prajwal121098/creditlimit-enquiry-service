@@ -11,6 +11,6 @@ import com.tesco.enquiry.model.EnquiryResponse;
  *
  */
 public interface ICreditLimitEnquiryService {
-	
+
 	public EnquiryResponse enquiry(EnquiryRequest enquiryRequest);
 }

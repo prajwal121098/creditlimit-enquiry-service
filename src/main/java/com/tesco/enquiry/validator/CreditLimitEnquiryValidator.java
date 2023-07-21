@@ -5,6 +5,7 @@ package com.tesco.enquiry.validator;
 
 import org.springframework.stereotype.Component;
 
+import com.tesco.enquiry.exception.CreditLimitEnquiryRequestInvalidException;
 import com.tesco.enquiry.model.EnquiryRequest;
 
 
@@ -15,10 +16,17 @@ import com.tesco.enquiry.model.EnquiryRequest;
 
 @Component
 public class CreditLimitEnquiryValidator {
-	
-	public void validateRequest(EnquiryRequest enquiryRequest) {
+
+	public void validateRequest(EnquiryRequest enquiryRequest) throws CreditLimitEnquiryRequestInvalidException {
 		// TODO : Validate the request, if the request is valid nothing return
 		// else return user defined exception
+		
+		if ( enquiryRequest.getPromocode() == null || 
+				enquiryRequest.getPromocode().isEmpty() || 
+				enquiryRequest.getPromocode().length() < 10 ) {
+			
+			throw new CreditLimitEnquiryRequestInvalidException("enq001", "Invalid Promocode");
+		}
 	}
 
 }

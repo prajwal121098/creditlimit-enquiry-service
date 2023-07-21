@@ -3,12 +3,14 @@
  */
 package com.tesco.enquiry.model;
 
+
 /**
  * @author Prajwal by 20-Jul-2023
  *
  */
+
 public class EnquiryRequest {
-	
+
 	private String promocode;
 	private String clientId;
 	private String channelId;
@@ -74,4 +76,5 @@ public class EnquiryRequest {
 	public void setRequestId(String requestId) {
 		this.requestId = requestId;
 	}
+
 }

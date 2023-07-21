@@ -3,10 +3,23 @@
  */
 package com.tesco.enquiry.exception;
 
+import lombok.Getter;
+import lombok.ToString;
+
 /**
  * @author Prajwal by 20-Jul-2023
  *
  */
-public class CreditLimitEnquiryRequestInvalidException {
+@Getter
+@ToString
+public class CreditLimitEnquiryRequestInvalidException extends Exception {
 
+	private String respCode;
+	private String respMsg;
+	
+	public CreditLimitEnquiryRequestInvalidException(String respCode, String respMsg) {
+		this.respCode = respCode;
+		this.respMsg = respMsg;
+	}
+	
 }
