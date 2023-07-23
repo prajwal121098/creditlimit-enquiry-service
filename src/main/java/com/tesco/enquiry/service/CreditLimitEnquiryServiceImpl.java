@@ -6,11 +6,15 @@ package com.tesco.enquiry.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.tesco.enquiry.exception.BusinessException;
+import com.tesco.enquiry.exception.SystemException;
 import com.tesco.enquiry.intg.dao.ICreditLimitEnquiryDao;
+import com.tesco.enquiry.model.CustomerInfo;
 import com.tesco.enquiry.model.EnquiryDaoRequest;
 import com.tesco.enquiry.model.EnquiryDaoResponse;
 import com.tesco.enquiry.model.EnquiryRequest;
 import com.tesco.enquiry.model.EnquiryResponse;
+import com.tesco.enquiry.model.StatusBlock;
 
 /**
  * @author Prajwal by 20-Jul-2023
@@ -24,7 +28,7 @@ public class CreditLimitEnquiryServiceImpl implements ICreditLimitEnquiryService
 	ICreditLimitEnquiryDao creditLimitEnquiryDao;
 
 	@Override
-	public EnquiryResponse enquiry(EnquiryRequest enquiryRequest) {
+	public EnquiryResponse enquiry(EnquiryRequest enquiryRequest) throws BusinessException, SystemException {
 
 		// 1. Get the request from controller
 
@@ -36,13 +40,21 @@ public class CreditLimitEnquiryServiceImpl implements ICreditLimitEnquiryService
 
 		// 4. Prepare the service response and send to Controller
 		EnquiryResponse enquiryResponse = new EnquiryResponse();
-		enquiryResponse.setAvailableAmount(enquiryDaoResponse.getAvailableAmount());
-		enquiryResponse.setCardNum(enquiryDaoResponse.getCardNum());
-		enquiryResponse.setCvv(enquiryDaoResponse.getCvv());
-		enquiryResponse.setIncreaseAmount(enquiryDaoResponse.getIncreaseAmount());
-		enquiryResponse.setIncreasePercentage(enquiryDaoResponse.getIncreasePercentage());
+		
+		StatusBlock statusBlock = new StatusBlock();
+		statusBlock.setRespCode(enquiryDaoResponse.getRespCode());
+		statusBlock.setRespMsg(enquiryDaoResponse.getRespMsg());
+		
+		CustomerInfo customerInfo = new CustomerInfo();
+		customerInfo.setAvailableAmount(enquiryDaoResponse.getAvailableAmount());
+		customerInfo.setCardNum(enquiryDaoResponse.getCardNum());
+		customerInfo.setCvv(enquiryDaoResponse.getCvv());
+		customerInfo.setIncreaseAmount(enquiryDaoResponse.getIncreaseAmount());
+		customerInfo.setIncreasePercentage(enquiryDaoResponse.getIncreasePercentage());
 
-
+		enquiryResponse.setStatusBlock(statusBlock);
+		enquiryResponse.setCustomerInfo(customerInfo);
+		
 		return enquiryResponse;
 	}
 

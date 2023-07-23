@@ -7,17 +7,17 @@ import lombok.Getter;
 import lombok.ToString;
 
 /**
- * @author Prajwal by 20-Jul-2023
+ * @author Prajwal by 23-Jul-2023
  *
  */
 @Getter
 @ToString
-public class BusinessException extends Exception {
-
+public class SystemException extends Exception {
+	
 	private String respCode;
 	private String respMsg;
 	
-	public BusinessException(String respCode, String respMsg) {
+	public SystemException(String respCode, String respMsg) {
 		this.respCode = respCode;
 		this.respMsg = respMsg;
 	}

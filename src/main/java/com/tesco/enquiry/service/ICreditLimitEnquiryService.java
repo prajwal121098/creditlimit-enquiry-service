@@ -3,6 +3,8 @@
  */
 package com.tesco.enquiry.service;
 
+import com.tesco.enquiry.exception.BusinessException;
+import com.tesco.enquiry.exception.SystemException;
 import com.tesco.enquiry.model.EnquiryRequest;
 import com.tesco.enquiry.model.EnquiryResponse;
 
@@ -12,5 +14,5 @@ import com.tesco.enquiry.model.EnquiryResponse;
  */
 public interface ICreditLimitEnquiryService {
 
-	public EnquiryResponse enquiry(EnquiryRequest enquiryRequest);
+	public EnquiryResponse enquiry(EnquiryRequest enquiryRequest) throws BusinessException, SystemException;
 }

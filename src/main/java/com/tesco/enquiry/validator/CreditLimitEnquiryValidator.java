@@ -23,9 +23,14 @@ public class CreditLimitEnquiryValidator {
 		
 		if ( enquiryRequest.getPromocode() == null || 
 				enquiryRequest.getPromocode().isEmpty() || 
-				enquiryRequest.getPromocode().length() < 10 ) {
+				enquiryRequest.getPromocode().length() <= 11 ) {
 			
 			throw new CreditLimitEnquiryRequestInvalidException("enq001", "Invalid Promocode");
+		}
+		
+		if( enquiryRequest.getClientId() == null || "".equals(enquiryRequest.getClientId()) ) {
+			
+			throw new CreditLimitEnquiryRequestInvalidException("enq002", "Invalid Cliend Id");
 		}
 	}
 

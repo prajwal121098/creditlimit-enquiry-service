@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.tesco.enquiry.exception.BusinessException;
 import com.tesco.enquiry.exception.CreditLimitEnquiryRequestInvalidException;
+import com.tesco.enquiry.exception.SystemException;
 import com.tesco.enquiry.model.EnquiryRequest;
 import com.tesco.enquiry.model.EnquiryResponse;
 import com.tesco.enquiry.service.ICreditLimitEnquiryService;
@@ -38,11 +40,16 @@ public class CreditLimitEnquiryController {
 										@RequestHeader("client_Id") String clientId,
 										@RequestHeader("channel_Id") String channelId,
 										@RequestHeader("message_ts") String messageTs,
-										@RequestHeader("request_Id") String requestId) throws CreditLimitEnquiryRequestInvalidException {
+										@RequestHeader("request_Id") String requestId) throws CreditLimitEnquiryRequestInvalidException, BusinessException, SystemException {
 
 		// 1. Get the request from consumer or client
 		EnquiryRequest enquiryRequest = new EnquiryRequest();
-
+		enquiryRequest.setPromocode(promocode);
+		enquiryRequest.setClientId(clientId);
+		enquiryRequest.setChannelId(channelId);
+		enquiryRequest.setMessageTs(messageTs);
+		enquiryRequest.setRequestId(requestId);
+		
 		// 2. Validate the request
 		creditLimitEnquiryValidator.validateRequest(enquiryRequest);
 
